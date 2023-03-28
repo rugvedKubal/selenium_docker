@@ -1,0 +1,36 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub:3.14
+  chrome:
+    image: selenium/node-chrome:3.14
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  firefox:
+    image: selenium/node-firefox:3.14
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  testInChrome:
+    image: rugvedk/selenium-docker
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - BROWSER=chrome
+      - HUB_HOST=hub
+    volumes:
+      - ./test-result-chrome:/usr/test/test-output
+  testInFirefox:
+    image: rugvedk/selenium-docker
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - BROWSER=firefox
+      - HUB_HOST=hub
+    volumes:
+      - ./test-result-firefox:/usr/test/test-output

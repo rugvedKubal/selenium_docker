@@ -1,0 +1,8 @@
+.idea
+*.jar
+*.log
+*.iml
+test-result
+test-result-chrome
+test-result-firefox
+target
