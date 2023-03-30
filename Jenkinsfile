@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven'
-                    args '-v /root/.m2:/root/.m2'
+                    args '-v $HOME/jenkinsSlaveMaven/.m2:/root/.m2'
                 }
             }
             steps {
